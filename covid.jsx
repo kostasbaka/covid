@@ -21,11 +21,12 @@ const fetchDataAxios = async ( letter ) => {
         dataFinal.push( mydata[ mydatabox ] );
       }
   }
+  
   return dataFinal;
 
 }
 
-function CovidHero(){
+const CovidHero = () => {
 
     const [ countryInfos , setCountryInfos ] = useState([]);
     const [ countryLetter , setCountryLetter ] = useState("A");
@@ -62,8 +63,7 @@ function CovidHero(){
         }else{
           return demoflag;
         }
-    };
-    
+    };  
 
     const onTaskHero = (HeroLetter) => {
       document.querySelector(".gun").classList.remove("gun");
@@ -73,32 +73,31 @@ function CovidHero(){
     }
 
     return (
-    <React.Fragment>
-        <Alphabet onTaskHero = {onTaskHero} />
-        <div className="treeBody">
-          {
-            countryInfos.map((countryInfo, idx) => {
-              return (
-                <div className="box" key={idx}>
-                  <div className="country--header JV--row">
-                      <h2>{getCountry(countryInfo)}</h2>
-                      <img src={getFlag(countryInfo)} alt={getFlag(countryInfo)} />
+      <React.Fragment>
+          <Alphabet onTaskHero = {onTaskHero} />
+          <div className="treeBody">
+            {
+              countryInfos.map((countryInfo, idx) => {
+                return (
+                  <div className="box" key={idx}>
+                    <div className="country--header JV--row">
+                        <h2>{getCountry(countryInfo)}</h2>
+                        <img src={getFlag(countryInfo)} alt={getFlag(countryInfo)} />
+                    </div>
+                    <div className="total JV--row"><span>Total cases:</span><span>{getTotalCase(countryInfo)}</span></div>
+                    <div className="new JV--row"><span>New cases:</span><span>{getNewCase(countryInfo)}</span></div>
+                    <div className="active JV--row"><span>Active cases:</span><span>{getActiveCase(countryInfo)}</span></div>
+                    <div className="critical JV--row"><span>Cases in danger:</span><span>{getCriticalCase(countryInfo)}</span></div>
+                    <div className="recovered JV--row"><span>Recovered:</span><span>{getRecCase(countryInfo)}</span></div>
+                    <div className="deaths JV--row"><span>Deaths:</span><span>{getDeathsTotal(countryInfo)}</span></div>
+                    <div className="newdeaths JV--row"><span>New deaths:</span><span>{getDeathsNew(countryInfo)}</span></div>
                   </div>
-                  <div className="total JV--row"><span>Total cases:</span><span>{getTotalCase(countryInfo)}</span></div>
-                  <div className="new JV--row"><span>New cases:</span><span>{getNewCase(countryInfo)}</span></div>
-                  <div className="active JV--row"><span>Active cases:</span><span>{getActiveCase(countryInfo)}</span></div>
-                  <div className="critical JV--row"><span>Cases in danger:</span><span>{getCriticalCase(countryInfo)}</span></div>
-                  <div className="recovered JV--row"><span>Recovered:</span><span>{getRecCase(countryInfo)}</span></div>
-                  <div className="deaths JV--row"><span>Deaths:</span><span>{getDeathsTotal(countryInfo)}</span></div>
-                  <div className="newdeaths JV--row"><span>New deaths:</span><span>{getDeathsNew(countryInfo)}</span></div>
-                </div>
-              );
-            })
-          }
-        </div>
-    </React.Fragment>
+                );
+              })
+            }
+          </div>
+      </React.Fragment>
     );
-
 }
 
 export default CovidHero;
